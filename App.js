@@ -4,13 +4,15 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
   View
 } from 'react-native';
+import { Card, Button } from 'react-native-elements';
 import Deck from './src/Deck';
+
 
 const DATA = [
     { id: 1, text: 'Card #1', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-04.jpg' },
@@ -23,13 +25,25 @@ const DATA = [
     { id: 8, text: 'Card #8', uri: 'http://imgs.abduzeedo.com/files/paul0v2/unsplash/unsplash-01.jpg' },
   ];
 
-export default class App extends Component {
+class App extends React.Component {
   renderCard(item) {
-      return (
-        <Text>{item.text}</Text>
-      );
-    }
-  
+    return (
+      <Card
+        title={item.text}
+        image={{ uri: item.uri }}
+      >
+        <Text style={{ marginBottom: 10 }} >
+            I can customize the card further.
+        </Text>
+        <Button
+          icon= {{ name: 'code' }}
+          backgroundColor="#03A9F4"
+          title="View Now!"
+        />
+      </Card>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -42,9 +56,11 @@ export default class App extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
     backgroundColor: '#fff'
   }
-});
+};
+
+export default App;
